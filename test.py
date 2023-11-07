@@ -58,7 +58,6 @@ pred = torch.FloatTensor()
 pred = pred.to(device)
 
 with torch.no_grad():
-    valid_loss = []
     model.eval()
     pbar = tqdm(test_loader)
     for i, (inputs, targets) in enumerate(pbar):
