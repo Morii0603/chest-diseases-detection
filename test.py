@@ -10,7 +10,6 @@ from build_model import *
 from utils import compute_AUCs
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-CKPT_PATH = "model.pth.tar"
 N_CLASSES = 14
 CLASS_NAMES = [
     "Atelectasis",
@@ -32,8 +31,6 @@ DATA_DIR = "./ChestX-ray14/images"
 TEST_IMAGE_LIST = "./ChestX-ray14/labels/test_list.txt"
 TRAIN_IMAGE_LIST = "ChestX-ray14/labels/train_list.txt"
 VAL_IMAGE_LIST = "ChestX-ray14/labels/val_list.txt"
-BATCH_SIZE = 64
-NUM_EPOCHS = 10
 
 
 model = ConvNeXt()
