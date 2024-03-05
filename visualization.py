@@ -6,19 +6,7 @@ import torch.nn as nn
 from pytorch_grad_cam import GradCAM
 from pytorch_grad_cam.utils.image import show_cam_on_image
 from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
-
-class ConvNeXt(nn.Module):
-    def __init__(self, out_features=14, pretrained=True):
-        super().__init__()
-        if pretrained:
-            self.model = torchvision.models.convnext_tiny(weights=torchvision.models.ConvNeXt_Tiny_Weights.DEFAULT)
-        else:
-            self.model = torchvision.models.convnext_tiny()
-        self.model.classifier[2] = nn.Linear(768, out_features=out_features)
-        self.model.classifier.add_module("sigmoid", nn.Sigmoid())
-    def forward(self, x):
-        x = self.model(x)
-        return x
+from build_model import ConvNeXt
 
 def visualization(img_path):
 # 加载模型
