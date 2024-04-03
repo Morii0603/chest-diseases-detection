@@ -1,9 +1,3 @@
-# encoding: utf-8
-
-"""
-Read images and corresponding labels.
-"""
-
 import torch
 from torch.utils.data import Dataset
 from PIL import Image
@@ -52,17 +46,4 @@ class ChestXrayDataSet(Dataset):
 
     def __len__(self):
         return len(self.image_names)
-if __name__ == '__main__':
-    normalize = transforms.Normalize([0.485, 0.456, 0.406],
-                                     [0.229, 0.224, 0.225])
-    train_dataset = ChestXrayDataSet(data_dir="ChestX-ray14/images", image_list_file="ChestX-ray14/labels/train_list.txt",
-                                     transform=transforms.Compose([
-                                        transforms.Resize(256),
-                                        transforms.TenCrop(224),
-                                        transforms.Lambda
-                                        (lambda crops: torch.stack([transforms.ToTensor()(crop) for crop in crops])),
-                                        transforms.Lambda
-                                        (lambda crops: torch.stack([normalize(crop) for crop in crops]))
-                                    ]))
-    img, label = train_dataset[0]
-    print(img, label)
+
